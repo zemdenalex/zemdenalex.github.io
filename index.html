@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Денис Земцов · портфолио: веб-проекты от разговора до запуска</title>
+<meta name="description" content="Денис Земцов. Веду веб-проекты целиком: от первого разговора с заказчиком до работающего сайта или сервиса.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101215; --panel:#181b20; --line:#2a2e35; --text:#eef0f2; --muted:#a3a9b2;
+  --accent:#ff5b24; --on-accent:#101215;
+  --r1:4px; --r2:8px; --r3:14px;
+  --bar:56px;
+  --wrap:1280px; --pad:clamp(20px,4vw,56px);
+  --sans:'Onest',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r1)}
+main{scroll-margin-top:var(--bar)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.skip{position:absolute;left:-10000px;top:8px;background:var(--accent);color:var(--on-accent);padding:8px 12px;border-radius:var(--r1);z-index:50;text-decoration:none;font-weight:600}
+.skip:focus{left:8px}
+
+/* ---------- sticky index ---------- */
+.bar{position:sticky;top:0;z-index:20;height:var(--bar);background:rgba(16,18,21,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{height:100%;display:flex;align-items:center;gap:24px}
+.bar .me{font-weight:800;font-size:15px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.idx{flex:1;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;height:100%;align-items:stretch}
+.idx::-webkit-scrollbar{display:none}
+.idx a{position:relative;display:flex;align-items:center;gap:7px;padding:0 10px;text-decoration:none;color:var(--muted);font-size:14px;white-space:nowrap;transition:color .15s}
+.idx a span{font-family:var(--mono);font-size:11px;color:#7c838d}
+.idx a::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.idx a:hover{color:var(--text)}
+.idx a:focus-visible{outline-offset:-3px}
+.idx a[aria-current="true"]{color:var(--text);font-weight:600}
+.idx a[aria-current="true"] span{color:var(--accent)}
+.idx a[aria-current="true"]::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:var(--r1);font:600 14px/1 var(--sans);text-decoration:none;white-space:nowrap;border:1px solid var(--line);transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--text)}
+.btn.acc{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.acc:hover{background:#ff7447;border-color:#ff7447}
+.bar .btn{min-height:34px;padding:0 12px;font-size:13px}
+
+/* ---------- hero ---------- */
+.hero{padding:32px 0 56px}
+.hero-top{display:grid;grid-template-columns:1.25fr 1fr;gap:28px 56px;align-items:end;margin-bottom:28px}
+.kicker{color:var(--accent);margin:0 0 10px}
+h1{margin:0;font:800 clamp(52px,7.4vw,112px)/.9 var(--sans);letter-spacing:-.035em}
+.role{margin:0;font-size:clamp(18px,1.55vw,21px);line-height:1.45;max-width:34ch;font-weight:500}
+.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px;line-height:1.45}
+.facts dt{color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.hero-side{display:grid;gap:18px}
+
+.shots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.shot{min-width:0}
+.shot a{display:block;text-decoration:none;border-radius:var(--r2)}
+.shot .frame{position:relative;overflow:hidden;border-radius:var(--r2);border:1px solid var(--line);aspect-ratio:16/10;background:var(--panel)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.shot a:hover img{transform:scale(1.04)}
+.cap{display:flex;align-items:baseline;gap:8px;height:30px;padding-top:8px;overflow:hidden;white-space:nowrap}
+.cap b{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent)}
+.cap strong{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis}
+.cap small{margin-left:auto;color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
+.shot a:hover strong{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.cell-contact{background:var(--accent);color:var(--on-accent);border-radius:var(--r2);padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-width:0}
+.cell-contact .mono{font-size:11px;font-weight:500}
+.cell-contact .links{display:grid;gap:4px;font-weight:600;font-size:15px;line-height:1.3}
+.cell-contact a{text-decoration:none;border-bottom:1.5px solid rgba(16,18,21,.35);justify-self:start}
+.cell-contact a:hover{border-bottom-color:var(--on-accent)}
+.cell-contact a:focus-visible{outline-color:var(--on-accent)}
+.cell-contact .dl{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;background:var(--on-accent);color:var(--text);border:0;padding:9px 12px;border-radius:var(--r1);font-weight:600;font-size:14px}
+.cell-contact .dl:hover{background:#000}
+
+@media (prefers-reduced-motion:no-preference){
+  .shots > li{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .shots > li:nth-child(2){animation-delay:.05s}.shots > li:nth-child(3){animation-delay:.1s}
+  .shots > li:nth-child(4){animation-delay:.15s}.shots > li:nth-child(5){animation-delay:.2s}
+  .shots > li:nth-child(6){animation-delay:.25s}.shots > li:nth-child(7){animation-delay:.3s}
+  .shots > li:nth-child(8){animation-delay:.35s}
+}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+
+/* ---------- cases ---------- */
+.case{border-top:1px solid var(--line);padding:88px 0 96px;scroll-margin-top:var(--bar)}
+.case-head{display:grid;grid-template-columns:1fr auto;gap:20px 48px;align-items:end;margin-bottom:32px}
+.no{color:var(--accent);margin:0 0 12px}
+h2{margin:0;font:800 clamp(34px,4.6vw,64px)/1 var(--sans);letter-spacing:-.03em}
+.sub{margin:12px 0 0;color:var(--muted);font-size:18px;max-width:46ch;line-height:1.45}
+.meta{margin:0;display:grid;grid-template-columns:auto auto;gap:4px 16px;font-size:14px;line-height:1.45;min-width:0}
+.meta dt{color:var(--muted)}
+.meta dd{margin:0}
+.visit{display:inline-flex;align-items:center;gap:8px;margin-top:14px}
+
+.figure{position:relative;margin:0;padding:0 12% 7% 0}
+.case:nth-of-type(even) .figure{padding:0 0 7% 12%}
+.figure .dk{width:100%;border-radius:var(--r2);border:1px solid var(--line);box-shadow:0 30px 80px -40px rgba(0,0,0,.8);background:var(--panel)}
+.figure .mb{position:absolute;right:0;bottom:0;width:21%;border-radius:var(--r3);border:1px solid #3a3f47;box-shadow:0 24px 60px rgba(0,0,0,.65);background:var(--panel)}
+.case:nth-of-type(even) .figure .mb{right:auto;left:0}
+
+.text{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px}
+.text section{border-top:2px solid var(--line);padding-top:16px}
+.text section.res{border-top-color:var(--accent)}
+h3{margin:0 0 10px;font:500 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.text section.res h3{color:var(--accent)}
+.text p{margin:0;font-size:17px;line-height:1.6}
+
+/* ---------- method ---------- */
+.method{border-top:1px solid var(--line);padding:88px 0}
+.method h2,.contact h2{margin-bottom:40px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;border-top:2px solid var(--line);padding-top:16px}
+.steps li::before{content:"0" counter(s);display:block;font:500 13px var(--mono);color:var(--accent);margin-bottom:14px}
+.steps h3{font:600 18px/1.3 var(--sans);letter-spacing:0;text-transform:none;color:var(--text);margin:0 0 8px}
+.steps p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+
+/* ---------- contact ---------- */
+.contact{background:var(--accent);color:var(--on-accent);padding:88px 0 72px}
+.contact h2{margin-bottom:14px}
+.contact .lead{margin:0 0 44px;font-size:20px;font-weight:500;max-width:40ch;line-height:1.45}
+.clist{margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:2px solid var(--on-accent);padding-top:20px}
+.clist dt{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.clist dd{margin:0;font-weight:600;font-size:clamp(17px,1.6vw,21px);line-height:1.3;overflow-wrap:anywhere}
+.clist a{text-decoration:none;border-bottom:2px solid rgba(16,18,21,.35)}
+.clist a:hover{border-bottom-color:var(--on-accent)}
+.contact a:focus-visible{outline-color:var(--on-accent)}
+.foot{margin-top:64px;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px) and (min-width:861px){
+  .cap small{display:none}
+}
+@media (max-width:1100px){
+  .hero-top{grid-template-columns:1fr 1.15fr;gap:24px 36px}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .clist{grid-template-columns:repeat(2,1fr)}
+  .case-head{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .hero-top{grid-template-columns:1fr;align-items:start}
+  .role{max-width:44ch}
+  .bar .me{display:none}
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .text{grid-template-columns:1fr;gap:28px}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  :root{--bar:52px}
+  body{font-size:16px}
+  .bar .wrap{gap:10px}
+  .idx a{padding:0 8px;font-size:13px}
+  .idx a::after{left:8px;right:8px}
+  .hero{padding:16px 0 44px}
+  .hero-top{display:contents}
+  .hero .wrap{display:flex;flex-direction:column}
+  .hero-name{order:1;margin-bottom:14px}
+  .hero-side{display:contents}
+  .role{order:2;font-size:17px;margin-bottom:14px}
+  .kicker{margin-bottom:6px}
+  .shots{order:3;gap:10px}
+  .facts{order:4;margin-top:28px}
+  .cap{height:26px;padding-top:6px}
+  .cap small{display:none}
+  .cell-contact{padding:12px}
+  .cell-contact .links{font-size:12.5px;overflow-wrap:anywhere}
+  .cell-contact .links a:nth-child(2){display:none}
+  .cell-contact .dl{padding:7px 9px;font-size:12.5px}
+  .case{padding:56px 0 64px}
+  .figure,.case:nth-of-type(even) .figure{padding:0 0 22% 0}
+  .figure .mb,.case:nth-of-type(even) .figure .mb{width:30%;right:4%;left:auto}
+  .text{margin-top:32px}
+  .steps{grid-template-columns:1fr}
+  .clist{grid-template-columns:1fr}
+  .method,.contact{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#case-1">К проектам</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="me" href="#top">Денис Земцов</a>
+    <nav class="idx" aria-label="Проекты">
+      <a href="#case-1"><span>01</span>IT at MISIS</a>
+      <a href="#case-2"><span>02</span>«Филин Термы»</a>
+      <a href="#case-3"><span>03</span>FlowTech</a>
+      <a href="#case-4"><span>04</span>Станкиобруч</a>
+      <a href="#case-5"><span>05</span>SEMPACK</a>
+      <a href="#case-6"><span>06</span>2211 Cosmetics</a>
+      <a href="#case-7"><span>07</span>NeuroBoost</a>
+    </nav>
+    <a class="btn acc" href="Denis-Zemtsov-portfolio.pdf" download>PDF</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-label="Денис Земцов">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-name">
+        <p class="kicker mono">Портфолио · 2026</p>
+        <h1>Денис<br>Земцов</h1>
+      </div>
+      <div class="hero-side">
+        <p class="role">Веду веб-проекты целиком: от первого разговора с заказчиком до работающего сайта или сервиса.</p>
+        <dl class="facts">
+          <dt>Опыт</dt><dd>7 лет в разработке и управлении проектами</dd>
+          <dt>Проекты</dt><dd>больше 100; больше 20 из них можно открыть: живые сайты, сервисы, открытые репозитории</dd>
+          <dt>Команда</dt><dd>с 2026 года веду проекты с командой Archifex</dd>
+          <dt>Для кого</dt><dd>бизнес, образование, собственные продукты</dd>
+        </dl>
+      </div>
+    </div>
+    <ul class="shots">
+      <li class="shot"><a href="#case-1"><div class="frame"><img src="img/itam-desk.jpg" width="2160" height="1350" alt="Сайт IT at MISIS, главная страница"></div><div class="cap"><b>01</b><strong>IT at MISIS</strong><small>itatmisis.ru</small></div></a></li>
+      <li class="shot"><a href="#case-2"><div class="frame"><img src="img/sarbani-desk.jpg" width="2160" height="1350" alt="Сайт спа-комплекса «Филин Термы», главная страница"></div><div class="cap"><b>02</b><strong>«Филин Термы»</strong><small>sarbani.ru</small></div></a></li>
+      <li class="shot"><a href="#case-3"><div class="frame"><img src="img/flowtech-desk.jpg" width="2160" height="1350" alt="Сайт FlowTech, главная страница"></div><div class="cap"><b>03</b><strong>FlowTech</strong><small>flowtech.moscow</small></div></a></li>
+      <li class="shot"><a href="#case-4"><div class="frame"><img src="img/stobru-desk.jpg" width="2160" height="1350" alt="Сайт Станкиобруч, главная страница"></div><div class="cap"><b>04</b><strong>Станкиобруч</strong><small>stobru.ru</small></div></a></li>
+      <li class="shot"><a href="#case-5"><div class="frame"><img src="img/sempack-desk.jpg" width="2160" height="1350" alt="Интернет-магазин SEMPACK, главная страница"></div><div class="cap"><b>05</b><strong>SEMPACK</strong><small>sempack.ru</small></div></a></li>
+      <li class="shot"><a href="#case-6"><div class="frame"><img src="img/2211-desk.jpg" width="2160" height="1350" alt="Интернет-магазин 2211 Cosmetics, главная страница"></div><div class="cap"><b>06</b><strong>2211 Cosmetics</strong><small>2211cosmetics.com</small></div></a></li>
+      <li class="shot"><a href="#case-7"><div class="frame"><img src="img/neuroboost-desk.jpg" width="2160" height="1350" alt="Планировщик NeuroBoost, главная страница"></div><div class="cap"><b>07</b><strong>NeuroBoost</strong><small>neuroboost.website</small></div></a></li>
+      <li class="cell-contact">
+        <span class="mono">Контакты</span>
+        <div class="links">
+          <a href="https://t.me/zemdenwork" target="_blank" rel="noopener">t.me/zemdenwork</a>
+          <a href="mailto:zemdenwork@gmail.com">zemdenwork@gmail.com</a>
+          <a href="tel:+79166779481">+7 916 677-94-81</a>
+        </div>
+        <a class="dl" href="Denis-Zemtsov-portfolio.pdf" download>Скачать PDF ↓</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<article class="case" id="case-1">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">01 / 07</p>
+        <h2>IT at MISIS</h2>
+        <p class="sub">Сайт студенческого IT-сообщества университета МИСИС</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>IT at MISIS, МИСИС</dd><dt>Сроки</dt><dd>январь-март 2026</dd><dt>Роль</dt><dd>вёл проект, разработка</dd></dl>
+        <a class="btn visit" href="https://itatmisis.ru" target="_blank" rel="noopener">itatmisis.ru ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/itam-desk.jpg" width="2160" height="1350" loading="lazy" alt="IT at MISIS: сайт на компьютере">
+      <img class="mb" src="img/itam-mob.jpg" width="1170" height="2532" loading="lazy" alt="IT at MISIS: сайт на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Сайт, который живёт сам: новости из Telegram-канала попадают на страницу без ручной публикации, а тексты правит команда сообщества, а не разработчик.</p></section>
+      <section><h3>Что сделано</h3><p>Сайт на двух языках, админка для команды, автоматический перенос постов из канала в новости. Всё работает на одном сервере без отдельного бюджета на хостинг.</p></section>
+      <section class="res"><h3>Результат</h3><p>3 месяца от первой строки кода до запуска. Русская и английская версии из одной админки. Новости обновляются сами.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-2">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">02 / 07</p>
+        <h2>«Филин Термы»</h2>
+        <p class="sub">Редизайн сайта банного спа-комплекса в Саратове</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>спа-комплекс «Филин Термы»</dd><dt>Сроки</dt><dd>июль-сентябрь 2026</dd><dt>Роль</dt><dd>вёл проект, внедрение дизайна</dd></dl>
+        <a class="btn visit" href="https://sarbani.ru" target="_blank" rel="noopener">sarbani.ru ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/sarbani-desk.jpg" width="2160" height="1350" loading="lazy" alt="«Филин Термы»: сайт на компьютере">
+      <img class="mb" src="img/sarbani-mob.jpg" width="1170" height="2532" loading="lazy" alt="«Филин Термы»: сайт на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Внедрить новый дизайн в работающий сайт и при этом не остановить продажу подарочных сертификатов.</p></section>
+      <section><h3>Что сделано</h3><p>Сначала выпустил то, что приносит деньги: кнопку «Купить сертификат» и блок цен. Остальное выходило блоками. Мобильную версию спроектировал сам, в макете её не было. Весь контент заказчик правит сам, в панели управления сайтом.</p></section>
+      <section class="res"><h3>Результат</h3><p>Ни одной остановки сайта за редизайн. Три расхождения макета с прайсом пойманы до публикации: заказчику ушёл вопрос, а на сайт не попала неверная цена.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-3">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">03 / 07</p>
+        <h2>FlowTech</h2>
+        <p class="sub">Сайт производителя учебных аэродинамических труб, резидента Сколково</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>FlowTech</dd><dt>Сроки</dt><dd>2024-2026</dd><dt>Роль</dt><dd>вёл проект, дизайн, разработка</dd></dl>
+        <a class="btn visit" href="https://flowtech.moscow" target="_blank" rel="noopener">flowtech.moscow ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/flowtech-desk.jpg" width="2160" height="1350" loading="lazy" alt="FlowTech: сайт на компьютере">
+      <img class="mb" src="img/flowtech-mob.jpg" width="1170" height="2532" loading="lazy" alt="FlowTech: сайт на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Сайт на двух языках для трёх аудиторий: школы и вузы, разработчики беспилотников, закупщики. Заказчик хотел выбрать направление редизайна, а не согласовать одну картинку.</p></section>
+      <section><h3>Что сделано</h3><p>Три живых варианта редизайна на общей основе, каждый со своей палитрой и текстами. Исправление в общей части сразу появляется во всех вариантах.</p></section>
+      <section class="res"><h3>Результат</h3><p>Заказчик выбирал, открывая три работающих сайта. Следующий заказ того же клиента: фирменный стиль и брендбук.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-4">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">04 / 07</p>
+        <h2>Станкиобруч</h2>
+        <p class="sub">Сайт поставщика учебных станков для школ и колледжей</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>Станкиобруч</dd><dt>Сроки</dt><dd>март-апрель 2026</dd><dt>Роль</dt><dd>вёл проект, разработка</dd></dl>
+        <a class="btn visit" href="https://stobru.ru" target="_blank" rel="noopener">stobru.ru ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/stobru-desk.jpg" width="2160" height="1350" loading="lazy" alt="Станкиобруч: сайт на компьютере">
+      <img class="mb" src="img/stobru-mob.jpg" width="1170" height="2532" loading="lazy" alt="Станкиобруч: сайт на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Сайт к полуночи, чтобы на следующий день показать его закупщикам. Был макет, не было текстов и бюджета на сервер.</p></section>
+      <section><h3>Что сделано</h3><p>Первый этап: сайт по макету, адаптив, форма заявки. Через неделю второй этап: новый дизайн (пять вариантов на выбор), каталог с поиском, панель, где заказчик сам меняет цены и фото, заявки в Telegram.</p></section>
+      <section class="res"><h3>Результат</h3><p>Второй этап за 3 дня от согласования до сдачи. Каталог вырос с 3 до 10 позиций. Заявки больше не теряются в почте.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-5">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">05 / 07</p>
+        <h2>SEMPACK</h2>
+        <p class="sub">Интернет-магазин производителя пищевой упаковки</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>SEMPACK</dd><dt>Сроки</dt><dd>июнь-август 2026</dd><dt>Роль</dt><dd>вёл проект, разработка</dd></dl>
+        <a class="btn visit" href="https://sempack.ru" target="_blank" rel="noopener">sempack.ru ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/sempack-desk.jpg" width="2160" height="1350" loading="lazy" alt="SEMPACK: магазин на компьютере">
+      <img class="mb" src="img/sempack-mob.jpg" width="1170" height="2532" loading="lazy" alt="SEMPACK: магазин на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Магазин, который находят в поиске и в котором оптовый покупатель за минуту запрашивает счёт. Сначала планировали конструктор, отказались: он не давал управлять каталогом и продвижением.</p></section>
+      <section><h3>Что сделано</h3><p>Собственный магазин целиком: каталог, корзина, онлайн-оплата с автоматическими чеками, админка для заказчика. Магазин принадлежит клиенту: свой домен, свой код, свои данные.</p></section>
+      <section class="res"><h3>Результат</h3><p>Первая версия витрины через 3 дня после согласования. После первого отзыва главная переделана за день.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-6">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">06 / 07</p>
+        <h2>2211 Cosmetics</h2>
+        <p class="sub">Восстановление и развитие интернет-магазина косметики</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>2211 Cosmetics</dd><dt>Сроки</dt><dd>март-август 2026</dd><dt>Роль</dt><dd>вёл проект, разработка</dd></dl>
+        <a class="btn visit" href="https://2211cosmetics.com" target="_blank" rel="noopener">2211cosmetics.com ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/2211-desk.jpg" width="2160" height="1350" loading="lazy" alt="2211 Cosmetics: магазин на компьютере">
+      <img class="mb" src="img/2211-mob.jpg" width="1170" height="2532" loading="lazy" alt="2211 Cosmetics: магазин на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>В магазине не работала онлайн-оплата. Чужой код десятилетней давности без документации, живые заказы каждый день, переписывать с нуля нельзя.</p></section>
+      <section><h3>Что сделано</h3><p>За неделю вернул оплату через банк. Дальше: выгрузка заказов в учётную систему, письма покупателям, регистрация, подписки на ежемесячные наборы.</p></section>
+      <section class="res"><h3>Результат</h3><p>Пять сломанных платёжных модулей заменил один рабочий. Пять этапов с марта, каждый следующий запрос клиент приносит снова. 4 007 аккаунтов в личном кабинете магазина на 04.08.2026.</p></section>
+    </div>
+  </div>
+</article>
+
+<article class="case" id="case-7">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="no mono">07 / 07</p>
+        <h2>NeuroBoost</h2>
+        <p class="sub">Собственный продукт: планировщик для людей с СДВГ, аутизмом и дислексией</p>
+      </div>
+      <div>
+        <dl class="meta"><dt>Заказчик</dt><dd>собственный продукт</dd><dt>Сроки</dt><dd>с ноября 2025</dd><dt>Роль</dt><dd>автор продукта, разработка</dd></dl>
+        <a class="btn visit" href="https://neuroboost.website" target="_blank" rel="noopener">neuroboost.website ↗</a>
+      </div>
+    </div>
+    <figure class="figure">
+      <img class="dk" src="img/neuroboost-desk.jpg" width="2160" height="1350" loading="lazy" alt="NeuroBoost: планировщик на компьютере">
+      <img class="mb" src="img/neuroboost-mob.jpg" width="1170" height="2532" loading="lazy" alt="NeuroBoost: планировщик на телефоне">
+    </figure>
+    <div class="text">
+      <section><h3>Задача</h3><p>Планировщик для людей, которым обычные приложения не подходят: календарь главный, задачи привязаны ко времени, вечерняя рефлексия входит в расписание.</p></section>
+      <section><h3>Что сделано</h3><p>Веду продукт от идеи: календарь, задачи, рефлексия, напоминания в Telegram. Новые версии выходят только через тестовую среду и после ручной проверки.</p></section>
+      <section class="res"><h3>Результат</h3><p>10 месяцев непрерывной разработки, больше 700 изменений кода, ни одной потерянной базы данных.</p></section>
+    </div>
+  </div>
+</article>
+
+<section class="method" aria-labelledby="method-h">
+  <div class="wrap">
+    <h2 id="method-h">Как я веду проект</h2>
+    <ol class="steps">
+      <li><h3>Разговор и опросник</h3><p>Выясняю, что нужно на самом деле, а не только что написано в заявке.</p></li>
+      <li><h3>ТЗ с разделом «что не входит»</h3><p>Договорились письменно, значит спорить потом не о чем.</p></li>
+      <li><h3>Варианты, а не один макет</h3><p>Заказчик выбирает направление, глядя на живые варианты.</p></li>
+      <li><h3>Разработка на копии</h3><p>Рабочий сайт не останавливается, правки выходят частями.</p></li>
+      <li><h3>Запуск и сопровождение</h3><p>Две недели бесплатных правок, дальше поддержка по запросу.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <h2 id="contact-h">Готов обсудить задачи музея</h2>
+    <p class="lead">Могу показать любой проект вживую: сайт, админку, то, как он устроен.</p>
+    <dl class="clist">
+      <div><dt>Telegram</dt><dd><a href="https://t.me/zemdenwork" target="_blank" rel="noopener">t.me/zemdenwork</a></dd></div>
+      <div><dt>Почта</dt><dd><a href="mailto:zemdenwork@gmail.com">zemdenwork@gmail.com</a></dd></div>
+      <div><dt>Телефон</dt><dd><a href="tel:+79166779481">+7 916 677-94-81</a></dd></div>
+      <div><dt>Проекты и демо</dt><dd><a href="https://archifex.space" target="_blank" rel="noopener">archifex.space</a></dd></div>
+      <div><dt>Портфолио</dt><dd><a href="Denis-Zemtsov-portfolio.pdf" download>Скачать PDF ↓</a></dd></div>
+    </dl>
+    <div class="foot"><span>Денис Земцов · портфолио · 2026</span><a href="#top">Наверх ↑</a></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function () {
+  var nav = document.querySelector('.idx');
+  var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  var cases = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var current = -1;
+
+  function mark(i) {
+    if (i === current) return;
+    current = i;
+    links.forEach(function (a, k) {
+      if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    if (i < 0 || nav.scrollWidth <= nav.clientWidth) return;
+    // keep the active item visible inside the strip without moving the page
+    var a = links[i];
+    var target = a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2;
+    nav.scrollTo({ left: Math.max(0, target), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+
+  function update() {
+    var line = window.innerHeight * 0.35;
+    var idx = -1;
+    for (var k = 0; k < cases.length; k++) {
+      var r = cases[k].getBoundingClientRect();
+      if (r.top <= line) idx = k;
+    }
+    // past the last case (method / contacts): nothing is "current"
+    if (idx === cases.length - 1 && cases[idx].getBoundingClientRect().bottom < line) idx = -1;
+    mark(idx);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+</body>
+</html>
